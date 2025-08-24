@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentasi Kemitraan Strategis | Klinik Pratama Prima</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://storage.googleapis.com/gemini-prod-us-west1-453303953503/34f9a562-725d-4a11-b21a-4d4374824d77">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .bg-prima-blue { background-color: #1E40AF; }
+        .text-prima-blue { color: #1E40AF; }
+        .bg-prima-green { background-color: #16A34A; }
+        .text-prima-green { color: #16A34A; }
+        .border-prima-blue { border-color: #1E40AF; }
+        .border-prima-green { border-color: #16A34A; }
+        .slide { 
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            position: relative;
+        }
+        .slide-hidden { opacity: 0; transform: scale(0.98); pointer-events: none; position: absolute; }
+        .slide-active { opacity: 1; transform: scale(1); }
+        .progress-bar-fill { transition: width 0.3s ease-in-out; }
+        .corner-logo {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            height: 40px;
+            z-index: 20;
+        }
+        .watermark-bg {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 40%;
+        }
+        .content-overlay {
+            background-color: rgba(255, 255, 255, 0.97);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+        .table-container {
+            max-height: 75%;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen justify-center items-center p-4">
+
+    <div class="w-full max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden relative" style="aspect-ratio: 16/9.5;">
+        <div id="presentation-container" class="w-full h-full"></div>
+    </div>
+
+    <div class="w-full max-w-4xl mx-auto mt-4">
+        <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div id="progressBar" class="bg-prima-blue h-2.5 rounded-full progress-bar-fill" style="width: 0%"></div>
+        </div>
+        <div class="flex justify-between items-center mt-3">
+            <button id="prevBtn" class="bg-white text-gray-700 font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">Sebelumnya</button>
+            <span id="slideCounter" class="text-sm font-medium text-gray-600"></span>
+            <button id="nextBtn" class="bg-prima-blue text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">Selanjutnya</button>
+        </div>
+    </div>
+
+    <script>
+        const logoUrl = 'https://storage.googleapis.com/gemini-prod-us-west1-453303953503/34f9a562-725d-4a11-b21a-4d4374824d77';
+
+        const slidesData = [
+            {
+                type: 'title',
+                title: 'Menjadi klinik pratama yang bertumbuh dan berkembang dengan jiwa pengabdian, ketulusan, serta profesionalisme dalam pelayanan kesehatan masyarakat.',
+                subtitle: 'Kemitraan Bersama Dokter Gigi di Klinik Pratama Prima',
+                presenter: 'Manajemen Klinik Prima',
+                note: 'Kami bangga bisa memulai langkah ini bersama Anda.'
+            },
+            {
+                type: 'points',
+                title: 'Visi & Nilai Utama Kita',
+                vision: 'Menjadi pusat layanan gigi yang ramah, profesional, dan dipercaya masyarakat, dengan sentuhan personal di setiap kunjungan.',
+                points: [
+                    { title: 'Kepedulian', text: 'Kami ingin pasien merasa diperhatikan, bukan hanya dilayani.', icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-prima-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>` },
+                    { title: 'Kolaborasi', text: 'Klinik dan dokter berjalan beriringan, saling melengkapi.', icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-prima-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>` },
+                    { title: 'Pertumbuhan', text: 'Terus beradaptasi dan berkembang dalam ilmu, trend layanan, dan teknologi.', icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-prima-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>` }
+                ]
+            },
+            {
+                type: 'chart',
+                chartType: 'doughnut',
+                title: 'Alokasi Biaya Harian Poli Gigi',
+                description: 'Total biaya harian sekitar Rp 907.257 dialokasikan pada beberapa komponen utama.',
+                data: {
+                    labels: ['SDM', 'Overhead', 'Alkes', 'Bangunan & Lainnya'],
+                    datasets: [{
+                        data: [295202, 239394, 194213, 178447],
+                        backgroundColor: ['#1E40AF', '#16A34A', '#3B82F6', '#22C55E'],
+                        borderColor: '#FFFFFF',
+                        borderWidth: 4,
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right' }, tooltip: { callbacks: { label: function(context) { let label = context.label || ''; if (context.parsed !== null) { label += ': ' + new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(context.parsed); } return label; } } } } }
+            },
+            {
+                type: 'chart',
+                chartType: 'line',
+                title: 'Menuju Titik Impas & Pertumbuhan',
+                description: 'Pendapatan harian akan menutupi biaya operasional saat mencapai titik impas (Break-Even Point).',
+                data: {
+                    labels: ['0', '10', '20', '30', '40', '50', '60'],
+                    datasets: [
+                        { label: 'Biaya Operasional', data: [907257, 907257, 907257, 907257, 907257, 907257, 907257], borderColor: '#EF4444', borderDash: [5, 5], fill: false, tension: 0.1 },
+                        { label: 'Estimasi Pendapatan', data: [0, 450000, 900000, 1350000, 1800000, 2250000, 2700000], borderColor: '#16A34A', backgroundColor: '#D1FAE5', fill: true, tension: 0.1 }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } }, scales: { y: { beginAtZero: true, ticks: { callback: function(value) { return 'Rp ' + (value / 1000) + 'k'; } } }, x: { title: { display: true, text: 'Jumlah Pasien (Estimasi)' } } } },
+                note: 'Titik impas terjadi saat garis hijau (pendapatan) melampaui garis merah (biaya).'
+            },
+            {
+                type: 'split',
+                title: 'Skema Pembagian Jasa (80:20)',
+                description: 'Contoh: Tambalan GIC Dewasa (Rp 260.000)',
+                clinic: { percentage: '80%', amount: 'Rp 208.000', label: 'Klinik', details: 'Menutup biaya operasional dan mendukung keberlanjutan.' },
+                doctor: { percentage: '20%', amount: 'Rp 52.000', label: 'Dokter', details: 'Apresiasi atas keahlian dan tindakan medis Anda.' }
+            },
+            {
+                type: 'table',
+                title: 'Daftar Tarif Pelayanan',
+                data: [
+                    { category: 'PEMERIKSAAN & PENCEGAHAN' },
+                    { item: 'PEMERIKSAAN DOKTER GIGI', tarif: 35000, jd: 7000 }, { item: 'PEMBERIAN TOPICAL APPLICATION FLOUR (TAF)', tarif: 230000, jd: 46000 }, { item: 'SCALLING PER REGIO RINGAN', tarif: 79000, jd: 15800 }, { item: 'SCALLING PER REGIO SEDANG', tarif: 120000, jd: 24000 }, { item: 'SCALLING PER REGIO BERAT', tarif: 138000, jd: 27600 }, { item: 'SCALLING PER RAHANG RINGAN', tarif: 154000, jd: 30800 }, { item: 'SCALLING PER RAHANG SEDANG', tarif: 210000, jd: 42000 }, { item: 'SCALLING PER RAHANG BERAT', tarif: 298000, jd: 59600 },
+                    { category: 'KONSERVASI GIGI' },
+                    { item: 'BUKA KAVUM', tarif: 69000, jd: 13800 }, { item: 'TAMBAL SEMENTARA (PER GIGI)', tarif: 58000, jd: 11600 }, { item: 'DEVITALISASI + TAMBAL SEMENTARA', tarif: 162000, jd: 32400 }, { item: 'PULP CAPPING (PER GIGI)', tarif: 58000, jd: 11600 }, { item: 'PREPARASI SALURAN AKAR (1 SALURAN)', tarif: 79000, jd: 15800 }, { item: 'PREPARASI SALURAN AKAR (2 SALURAN)', tarif: 98000, jd: 19600 }, { item: 'PREPARASI SALURAN AKAR (3 SALURAN)', tarif: 120000, jd: 24000 }, { item: 'PENGISIAN GIGI (PER GIGI)', tarif: 57000, jd: 11400 }, { item: 'TAMBALAN GIC ANAK', tarif: 179000, jd: 35800 }, { item: 'TAMBALAN GIC DEWASA', tarif: 260000, jd: 52000 }, { item: 'TAMBALAN KOMPOSIT KECIL', tarif: 244000, jd: 48800 }, { item: 'TAMBALAN KOMPOSIT BESAR', tarif: 333000, jd: 66600 }, { item: 'TAMBALAN KOMPOSIT GIGI DEPAN / ESTETIK', tarif: 343000, jd: 68600 },
+                    { category: 'BEDAH MINOR (PENCABUTAN GIGI)' },
+                    { item: 'EKSTRAKSI GIGI ANAK (TOPICAL)', tarif: 153000, jd: 30600 }, { item: 'EKSTRAKSI GIGI ANAK (INJEKSI)', tarif: 151000, jd: 30200 }, { item: 'EKSTRAKSI GIGI DEWASA (TOPICAL)', tarif: 142000, jd: 28400 }, { item: 'EKSTRAKSI GIGI DEWASA (INJEKSI)', tarif: 227000, jd: 45400 }, { item: 'EKSTRAKSI GIGI DEWASA (KOMPLIKASI)', tarif: 332000, jd: 66400 },
+                    { category: 'LAIN-LAIN' },
+                    { item: 'DRY SOCKET', tarif: 166000, jd: 33200 }, { item: 'ERF GIGI ANTERIOR', tarif: 233000, jd: 46600 },
+                ]
+            },
+            {
+                type: 'points',
+                title: 'Kemitraan yang Aktif dan Kolaboratif',
+                description: 'Klinik ini bukan sekadar tempat kerja, melainkan ruang berkarya dan bertumbuh bersama:',
+                points: [
+                    { title: 'Ruang Diskusi', text: 'Pertemuan rutin untuk evaluasi dan ide.', icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-prima-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>` },
+                    { title: 'SOP Kolaboratif', text: 'Dokter terlibat langsung dalam menyusun standar klinis sesuai ketentuan yang berlaku.', icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-prima-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>` }
+                ]
+            },
+            {
+                type: 'points',
+                title: 'Komitmen Bersama',
+                description: 'Fondasi kemitraan yang ingin kita bangun:',
+                points: [
+                    { title: 'Transparansi', text: 'Transparansi dalam menyampaikan masukan, kritik, maupun saran demi kebaikan bersama.', icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-prima-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 20.417l5.5-5.5a1 1 0 011.414 0l5.5 5.5A12.02 12.02 0 0018.944 5.944c.32.707.536 1.456.618 2.228z" /></svg>` },
+                    { title: 'Tujuan Bersama', text: 'Pertumbuhan klinik dan mutu pelayanan di atas segalanya.', icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-prima-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" /></svg>` }
+                ]
+            },
+            {
+                type: 'final',
+                title: 'Mari Melangkah Bersama membangun layanan gigi yang profesional',
+                message: 'Terima Kasih.'
+            }
+        ];
+
+        let currentSlide = 0;
+        const presentationContainer = document.getElementById('presentation-container');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideCounter = document.getElementById('slideCounter');
+        const progressBar = document.getElementById('progressBar');
+        let charts = {};
+
+        function createSlideElement(slideData, index) {
+            const slideDiv = document.createElement('div');
+            slideDiv.className = 'slide w-full h-full absolute top-0 left-0';
+            slideDiv.id = `slide-${index}`;
+
+            let contentWrapper = document.createElement('div');
+            contentWrapper.className = 'w-full h-full p-8 md:p-12 flex flex-col justify-center items-center text-center relative z-10';
+            
+            let content = '';
+            
+            if (slideData.type === 'title' || slideData.type === 'final') {
+                slideDiv.innerHTML = `<img src="${logoUrl}" alt="Logo Klinik Pratama Prima" class="corner-logo" onerror="this.onerror=null; this.src='https://placehold.co/200x60/1E40AF/FFFFFF?text=Logo+Klinik';">`;
+            } else {
+                slideDiv.classList.add('watermark-bg');
+                slideDiv.style.backgroundImage = `url(${logoUrl})`;
+                let overlay = document.createElement('div');
+                overlay.className = 'content-overlay';
+                slideDiv.appendChild(overlay);
+            }
+
+            switch (slideData.type) {
+                case 'title':
+                    content = `<div class="flex flex-col items-center justify-center h-full pt-10">
+                        <h1 class="text-2xl md:text-3xl font-bold text-prima-blue px-6">${slideData.title}</h1>
+                        <p class="mt-4 text-lg md:text-xl text-gray-600">${slideData.subtitle}</p>
+                        <div class="mt-12 border-t border-gray-200 pt-6">
+                            <p class="text-md font-medium text-gray-800">${slideData.presenter}</p>
+                            <p class="text-sm text-gray-500 italic mt-1">${slideData.note}</p>
+                        </div>
+                    </div>`;
+                    break;
+                case 'points':
+                    content = `<div class="w-full text-left">
+                        <h2 class="text-2xl md:text-4xl font-bold text-prima-blue mb-4 text-center">${slideData.title}</h2>
+                        ${slideData.vision ? `<p class="text-center text-lg text-gray-700 mb-8 p-4 bg-blue-50 rounded-lg border-l-4 border-prima-blue">${slideData.vision}</p>` : ''}
+                        ${slideData.description ? `<p class="text-center text-md text-gray-600 mb-8">${slideData.description}</p>` : ''}
+                        <div class="space-y-4 md:space-y-6">
+                            ${slideData.points.map(point => `<div class="bg-gray-50 p-4 rounded-lg flex items-center">
+                                <div class="mr-4 flex-shrink-0">${point.icon}</div>
+                                <div><h3 class="font-bold text-gray-800 text-lg">${point.title}</h3><p class="text-gray-600">${point.text}</p></div>
+                            </div>`).join('')}
+                        </div>
+                    </div>`;
+                    break;
+                case 'chart':
+                    content = `<div class="w-full h-full flex flex-col items-center justify-center p-4">
+                        <h2 class="text-2xl md:text-3xl font-bold text-prima-blue mb-2 text-center">${slideData.title}</h2>
+                        <p class="text-center text-sm md:text-base text-gray-600 mb-4 max-w-2xl">${slideData.description || ''}</p>
+                        <div class="w-full flex-grow relative"><canvas id="chart-${index}"></canvas></div>
+                        ${slideData.note ? `<p class="text-center text-xs text-gray-500 mt-2 italic">${slideData.note}</p>` : ''}
+                    </div>`;
+                    break;
+                case 'split':
+                    content = `<div class="w-full">
+                        <h2 class="text-2xl md:text-4xl font-bold text-prima-blue mb-2 text-center">${slideData.title}</h2>
+                        <p class="text-center text-md text-gray-600 mb-8">${slideData.description}</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                            <div class="bg-blue-50 border-2 border-prima-blue rounded-xl p-6 flex flex-col">
+                                <span class="text-5xl font-extrabold text-prima-blue">${slideData.clinic.percentage}</span>
+                                <h3 class="text-xl font-bold text-prima-blue mt-2">${slideData.clinic.label}</h3>
+                                <p class="text-2xl font-bold text-gray-700 mt-4">${slideData.clinic.amount}</p>
+                                <p class="text-gray-600 mt-2 flex-grow">${slideData.clinic.details}</p>
+                            </div>
+                            <div class="bg-green-50 border-2 border-prima-green rounded-xl p-6 flex flex-col">
+                                <span class="text-5xl font-extrabold text-prima-green">${slideData.doctor.percentage}</span>
+                                <h3 class="text-xl font-bold text-prima-green mt-2">${slideData.doctor.label}</h3>
+                                <p class="text-2xl font-bold text-gray-700 mt-4">${slideData.doctor.amount}</p>
+                                <p class="text-gray-600 mt-2 flex-grow">${slideData.doctor.details}</p>
+                            </div>
+                        </div>
+                    </div>`;
+                    break;
+                case 'table':
+                    const formatCurrency = (value) => new Intl.NumberFormat('id-ID').format(value);
+                    let tableRows = slideData.data.map(row => {
+                        if (row.category) {
+                            return `<tr class="bg-blue-50"><td colspan="3" class="py-2 px-4 font-bold text-prima-blue text-left">${row.category}</td></tr>`;
+                        }
+                        return `<tr>
+                                    <td class="py-2 px-4 text-left border-b">${row.item}</td>
+                                    <td class="py-2 px-4 text-right border-b">${formatCurrency(row.tarif)}</td>
+                                    <td class="py-2 px-4 text-right border-b font-semibold text-prima-green">${formatCurrency(row.jd)}</td>
+                                </tr>`;
+                    }).join('');
+
+                    content = `<div class="w-full flex flex-col h-full">
+                        <h2 class="text-2xl md:text-3xl font-bold text-prima-blue mb-4 text-center">${slideData.title}</h2>
+                        <div class="table-container w-full border rounded-lg">
+                            <table class="w-full text-sm text-gray-700">
+                                <thead class="bg-gray-100 sticky top-0">
+                                    <tr>
+                                        <th class="py-2 px-4 text-left font-bold">ITEM TARIF</th>
+                                        <th class="py-2 px-4 text-right font-bold">Tarif Umum (Rp)</th>
+                                        <th class="py-2 px-4 text-right font-bold">Jasa Dokter (20%) (Rp)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>${tableRows}</tbody>
+                            </table>
+                        </div>
+                    </div>`;
+                    break;
+                case 'final':
+                    content = `<div class="flex flex-col items-center justify-center h-full pt-10">
+                        <h1 class="text-3xl md:text-5xl font-extrabold text-prima-blue">${slideData.title}</h1>
+                        <p class="mt-6 text-lg text-center text-gray-600 max-w-2xl">${slideData.message}</p>
+                    </div>`;
+                    break;
+            }
+            contentWrapper.innerHTML = content;
+            slideDiv.appendChild(contentWrapper);
+            return slideDiv;
+        }
+
+        function renderSlides() {
+            slidesData.forEach((slide, index) => {
+                const slideElement = createSlideElement(slide, index);
+                presentationContainer.appendChild(slideElement);
+            });
+        }
+
+        function showSlide(index) {
+            if (charts[currentSlide] && slidesData[currentSlide].type === 'chart') {
+                charts[currentSlide].destroy();
+                delete charts[currentSlide];
+            }
+
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.remove('slide-hidden');
+                    slide.classList.add('slide-active');
+                } else {
+                    slide.classList.add('slide-hidden');
+                    slide.classList.remove('slide-active');
+                }
+            });
+
+            currentSlide = index;
+
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === slidesData.length - 1;
+            slideCounter.textContent = `Slide ${currentSlide + 1} dari ${slidesData.length}`;
+            const progress = ((currentSlide + 1) / slidesData.length) * 100;
+            progressBar.style.width = `${progress}%`;
+
+            const currentSlideData = slidesData[currentSlide];
+            if (currentSlideData.type === 'chart' && !charts[currentSlide]) {
+                 setTimeout(() => {
+                    const ctx = document.getElementById(`chart-${currentSlide}`).getContext('2d');
+                    if (ctx) {
+                        charts[currentSlide] = new Chart(ctx, {
+                            type: currentSlideData.chartType,
+                            data: currentSlideData.data,
+                            options: currentSlideData.options
+                        });
+                    }
+                 }, 100);
+            }
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < slidesData.length - 1) {
+                showSlide(currentSlide + 1);
+            }
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextBtn.click();
+            } else if (e.key === 'ArrowLeft') {
+                prevBtn.click();
+            }
+        });
+
+        renderSlides();
+        showSlide(0);
+    </script>
+</body>
+</html>
