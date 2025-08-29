@@ -3,361 +3,434 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sosialisasi Dokter Gigi | Klinik Pratama Prima</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://storage.googleapis.com/gemini-prod-us-west1-453303953503/34f9a562-725d-4a11-b21a-4d4374824d77">
+    <title>Analisis Final Bisnis MCU - Proyek PT. ABC</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .bg-prima-blue { background-color: #1E40AF; }
-        .text-prima-blue { color: #1E40AF; }
-        .bg-prima-green { background-color: #16A34A; }
-        .text-prima-green { color: #16A34A; }
-        .border-prima-blue { border-color: #1E40AF; }
-        .border-prima-green { border-color: #16A34A; }
-        .slide { 
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .slide {
+            display: none;
+            animation: fadeIn 0.8s;
+        }
+        .slide.active {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .chart-container {
             position: relative;
-        }
-        .slide-hidden { opacity: 0; transform: scale(0.98); pointer-events: none; position: absolute; }
-        .slide-active { opacity: 1; transform: scale(1); }
-        .progress-bar-fill { transition: width 0.3s ease-in-out; }
-        .corner-logo {
-            position: absolute;
-            top: 2rem;
-            left: 2rem;
-            height: 40px;
-            z-index: 20;
-        }
-        .watermark-bg {
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 40%;
-        }
-        .content-overlay {
-            background-color: rgba(255, 255, 255, 0.97);
+            height: 50vh;
             width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 10;
-        }
-        .table-container {
-            max-height: 75%;
-            overflow-y: auto;
         }
     </style>
 </head>
-<body class="bg-gray-100 flex flex-col min-h-screen justify-center items-center p-4">
+<body class="bg-slate-50 text-slate-800">
+    <div id="presentation-container" class="relative w-full min-h-screen flex flex-col items-center justify-center p-4 lg:p-8 overflow-hidden">
 
-    <div class="w-full max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden relative" style="aspect-ratio: 16/9.5;">
-        <div id="presentation-container" class="w-full h-full"></div>
+        <!-- Slide 1: Judul -->
+        <section class="slide active w-full h-full flex-col items-center justify-center text-center">
+            <div class="bg-white p-8 rounded-2xl shadow-lg max-w-4xl mx-auto">
+                <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="line-chart" class="w-8 h-8"></i>
+                </div>
+                <h1 class="text-3xl md:text-5xl font-bold text-blue-600 mb-2">Analisis Bisnis Layanan MCU</h1>
+                <h2 class="text-xl md:text-2xl font-semibold text-slate-600">Analisis Final Proyek Kerjasama PT. ABC</h2>
+                <p class="mt-6 text-slate-500">Presentasi Internal untuk Manajemen</p>
+            </div>
+        </section>
+
+        <!-- Slide 2: Peluang Pasar -->
+        <section class="slide w-full h-full flex-col items-center justify-center text-center">
+            <div class="bg-white p-8 rounded-2xl shadow-lg max-w-5xl mx-auto w-full">
+                <h2 class="text-3xl font-bold text-slate-800 mb-8">Analisis Peluang Pasar</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-slate-100 p-6 rounded-lg text-center">
+                        <i data-lucide="building-2" class="w-10 h-10 text-blue-500 mx-auto mb-3"></i>
+                        <h3 class="font-semibold text-lg">Target Klien</h3>
+                        <p class="text-2xl font-bold">PT. ABC</p>
+                        <p class="text-slate-600 text-sm">Perusahaan Skala Besar</p>
+                    </div>
+                    <div class="bg-slate-100 p-6 rounded-lg text-center">
+                        <i data-lucide="users" class="w-10 h-10 text-green-500 mx-auto mb-3"></i>
+                        <h3 class="font-semibold text-lg">Potensi Pasar</h3>
+                        <p class="text-2xl font-bold">3.500 Karyawan</p>
+                        <p class="text-slate-600 text-sm">Volume Proyek Signifikan</p>
+                    </div>
+                    <div class="bg-slate-100 p-6 rounded-lg text-center">
+                        <i data-lucide="refresh-cw" class="w-10 h-10 text-yellow-500 mx-auto mb-3"></i>
+                        <h3 class="font-semibold text-lg">Sifat Kerjasama</h3>
+                        <p class="text-2xl font-bold">Potensi Jangka Panjang</p>
+                        <p class="text-slate-600 text-sm">Peluang kontrak tahunan</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Slide 3: Rincian Paket & Margin -->
+        <section class="slide w-full h-full flex-col items-center justify-center">
+            <!-- Data harga divalidasi berdasarkan tarif resmi per 29 Agustus 2025 -->
+            <div class="bg-white p-8 rounded-2xl shadow-lg max-w-7xl mx-auto w-full">
+                <h2 class="text-3xl font-bold text-slate-800 mb-8 text-center">Struktur Paket & Proyeksi Margin</h2>
+                <p class="text-center text-slate-500 mb-6 max-w-2xl mx-auto">Analisis harga jual setelah diskon 30% dengan asumsi Harga Pokok Penjualan (HPP) sebesar 60% dari harga jual.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Paket Basic -->
+                    <div class="border border-slate-200 rounded-xl p-6 flex flex-col">
+                        <h3 class="text-xl font-bold text-blue-600">MCU Basic</h3>
+                        <p class="text-slate-500 text-sm mb-4">Skrining kesehatan umum.</p>
+                        <ul class="text-sm space-y-2 text-slate-700 flex-grow">
+                            <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2 flex-shrink-0"></i>Pemeriksaan Dokter & Fisik</li>
+                            <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2 flex-shrink-0"></i>Gula Darah (POCT)</li>
+                            <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2 flex-shrink-0"></i>Urine Lengkap</li>
+                            <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2 flex-shrink-0"></i>Hematologi Lengkap</li>
+                        </ul>
+                        <div class="mt-4 pt-4 border-t">
+                            <p class="text-2xl font-bold">Rp 169.750</p>
+                             <div class="mt-2 space-y-1 text-xs">
+                                <p class="flex justify-between"><span>HPP (Est. 60%):</span> <span class="font-medium">Rp 101.850</span></p>
+                                <p class="flex justify-between text-green-600"><span>Profit per Peserta:</span> <span class="font-bold">Rp 67.900</span></p>
+                                <p class="flex justify-between text-green-700"><span>Margin Keuntungan:</span> <span class="font-bold text-base">40%</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Paket Standard -->
+                    <div class="border-2 border-blue-500 rounded-xl p-6 flex flex-col ring-4 ring-blue-100">
+                        <h3 class="text-xl font-bold text-blue-600">MCU Standard</h3>
+                        <p class="text-slate-500 text-sm mb-4">Pemeriksaan fungsi organ dasar.</p>
+                        <ul class="text-sm space-y-2 text-slate-700 flex-grow">
+                            <li class="flex items-center font-semibold"><i data-lucide="plus-circle" class="w-4 h-4 text-blue-500 mr-2 flex-shrink-0"></i>Semua di Paket Basic</li>
+                            <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2 flex-shrink-0"></i>Asam Urat (POCT)</li>
+                            <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2 flex-shrink-0"></i>Fungsi Hati (SGOT, SGPT, Alk. Fosf)</li>
+                            <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2 flex-shrink-0"></i>Fungsi Ginjal (Ureum, Creatinin)</li>
+                        </ul>
+                        <div class="mt-4 pt-4 border-t">
+                            <p class="text-2xl font-bold">Rp 514.500</p>
+                            <div class="mt-2 space-y-1 text-xs">
+                                <p class="flex justify-between"><span>HPP (Est. 60%):</span> <span class="font-medium">Rp 308.700</span></p>
+                                <p class="flex justify-between text-green-600"><span>Profit per Peserta:</span> <span class="font-bold">Rp 205.800</span></p>
+                                <p class="flex justify-between text-green-700"><span>Margin Keuntungan:</span> <span class="font-bold text-base">40%</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Paket Comprehensive -->
+                    <div class="border border-slate-200 rounded-xl p-6 flex flex-col">
+                        <h3 class="text-xl font-bold text-blue-600">MCU Comprehensive</h3>
+                        <p class="text-slate-500 text-sm mb-4">Pemeriksaan kesehatan menyeluruh.</p>
+                         <ul class="text-sm space-y-2 text-slate-700 flex-grow">
+                            <li class="flex items-center font-semibold"><i data-lucide="plus-circle" class="w-4 h-4 text-blue-500 mr-2 flex-shrink-0"></i>Semua di Paket Standard</li>
+                            <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2 flex-shrink-0"></i>Profil Lemak Lengkap</li>
+                            <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2 flex-shrink-0"></i>Hepatitis B (HbsAg)</li>
+                            <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2 flex-shrink-0"></i>Pemeriksaan Jantung (EKG)</li>
+                            <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 text-green-500 mr-2 flex-shrink-0"></i>Rontgen Thorax</li>
+                        </ul>
+                        <div class="mt-4 pt-4 border-t">
+                             <p class="text-2xl font-bold">Rp 1.287.400</p>
+                             <div class="mt-2 space-y-1 text-xs">
+                                <p class="flex justify-between"><span>HPP (Est. 60%):</span> <span class="font-medium">Rp 772.440</span></p>
+                                <p class="flex justify-between text-green-600"><span>Profit per Peserta:</span> <span class="font-bold">Rp 514.960</span></p>
+                                <p class="flex justify-between text-green-700"><span>Margin Keuntungan:</span> <span class="font-bold text-base">40%</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Analisis Pasar & Posisi Harga (BARU) -->
+        <section class="slide w-full h-full flex-col items-center justify-center">
+            <div class="bg-white p-8 rounded-2xl shadow-lg max-w-7xl mx-auto w-full">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 text-center">Analisis Pasar & Posisi Harga</h2>
+                <p class="text-center text-slate-500 mb-8 max-w-3xl mx-auto">Perbandingan harga penawaran kita (setelah diskon 30%) dengan perkiraan rentang harga paket sejenis dari klinik pratama dan RS di area Bandung Raya.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Posisi Harga Basic -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 text-center">
+                        <h3 class="text-lg font-bold text-blue-600">MCU Basic</h3>
+                        <p class="text-3xl font-bold my-2">Rp 169.750</p>
+                        <hr class="my-4">
+                        <p class="text-sm text-slate-600">Rentang Harga Pasar</p>
+                        <p class="text-lg font-semibold text-slate-800">Rp 220.000 - Rp 450.000</p>
+                        <div class="mt-4 bg-green-100 text-green-800 text-sm font-semibold py-2 px-4 rounded-full inline-flex items-center">
+                            <i data-lucide="award" class="w-4 h-4 mr-2"></i>
+                            Sangat Kompetitif
+                        </div>
+                    </div>
+                    <!-- Posisi Harga Standard -->
+                    <div class="bg-blue-50 border-2 border-blue-500 rounded-xl p-6 text-center ring-4 ring-blue-100">
+                        <h3 class="text-lg font-bold text-blue-600">MCU Standard</h3>
+                        <p class="text-3xl font-bold my-2">Rp 514.500</p>
+                        <hr class="my-4">
+                        <p class="text-sm text-slate-600">Rentang Harga Pasar</p>
+                        <p class="text-lg font-semibold text-slate-800">Rp 550.000 - Rp 900.000</p>
+                        <div class="mt-4 bg-green-100 text-green-800 text-sm font-semibold py-2 px-4 rounded-full inline-flex items-center">
+                            <i data-lucide="award" class="w-4 h-4 mr-2"></i>
+                            Sangat Kompetitif
+                        </div>
+                    </div>
+                    <!-- Posisi Harga Comprehensive -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 text-center">
+                        <h3 class="text-lg font-bold text-blue-600">MCU Comprehensive</h3>
+                        <p class="text-3xl font-bold my-2">Rp 1.287.400</p>
+                        <hr class="my-4">
+                        <p class="text-sm text-slate-600">Rentang Harga Pasar</p>
+                        <p class="text-lg font-semibold text-slate-800">Rp 1.100.000 - Rp 1.800.000</p>
+                        <div class="mt-4 bg-green-100 text-green-800 text-sm font-semibold py-2 px-4 rounded-full inline-flex items-center">
+                           <i data-lucide="thumbs-up" class="w-4 h-4 mr-2"></i>
+                            Kompetitif
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 text-center text-sm text-slate-500">
+                    <p>*Sumber: Analisis harga publik dari berbagai klinik dan RS di Bandung per Agustus 2025. Harga pasar untuk korporat bisa lebih rendah tergantung volume.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Analisis SWOT (DIPERBARUI) -->
+        <section class="slide w-full h-full flex-col items-center justify-center">
+            <div class="bg-white p-8 rounded-2xl shadow-lg max-w-5xl mx-auto w-full">
+                <h2 class="text-3xl font-bold text-slate-800 mb-8 text-center">Analisis SWOT</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <h3 class="font-bold text-lg text-green-800 flex items-center mb-2"><i data-lucide="zap" class="w-5 h-5 mr-2"></i>Strengths</h3>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li><span class="font-semibold">Harga sangat kompetitif,</span> berada di bawah rata-rata pasar Bandung Raya untuk paket sejenis.</li>
+                            <li>Layanan On-site sebagai nilai jual utama yang mengurangi disrupsi kerja klien.</li>
+                            <li>Kualitas terjamin via kerjasama laboratorium RS Immanuel.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                        <h3 class="font-bold text-lg text-red-800 flex items-center mb-2"><i data-lucide="shield-alert" class="w-5 h-5 mr-2"></i>Weaknesses</h3>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li>Kebutuhan logistik & SDM yang kompleks untuk layanan on-site skala besar.</li>
+                            <li>Ketergantungan pada 1 klien besar untuk proyek awal ini.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                        <h3 class="font-bold text-lg text-blue-800 flex items-center mb-2"><i data-lucide="lightbulb" class="w-5 h-5 mr-2"></i>Opportunities</h3>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li>Menjadi <span class="font-semibold">price leader</span> untuk mengunci kontrak jangka panjang & berkelanjutan.</li>
+                            <li>Membangun reputasi kuat di segmen *corporate healthcare* sebagai penyedia layanan efisien.</li>
+                            <li>Potensi cross-selling layanan klinik lainnya (misal: seminar kesehatan, vaksinasi).</li>
+                        </ul>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500">
+                        <h3 class="font-bold text-lg text-yellow-800 flex items-center mb-2"><i data-lucide="cloud-lightning" class="w-5 h-5 mr-2"></i>Threats</h3>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li>Kompetitor menawarkan paket dengan <span class="font-semibold">lebih banyak fitur</span> pada titik harga sedikit lebih tinggi.</li>
+                            <li>Risiko klien tidak memperpanjang kontrak setelah tahun pertama.</li>
+                            <li>Fluktuasi harga reagen dan alkes yang dapat mempengaruhi HPP dan margin.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Rencana Operasional -->
+        <section class="slide w-full h-full flex-col items-center justify-center">
+            <div class="bg-white p-8 rounded-2xl shadow-lg max-w-4xl mx-auto w-full">
+                <h2 class="text-3xl font-bold text-slate-800 mb-8 text-center">Rencana Operasional</h2>
+                <div class="relative">
+                    <div class="absolute left-4 top-0 h-full w-0.5 bg-slate-200"></div>
+                    <div class="space-y-8">
+                        <div class="flex items-start">
+                            <div class="z-10 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0">1</div>
+                            <div class="ml-6">
+                                <p class="font-medium">Pembentukan Tim Proyek</p>
+                                <p class="text-sm text-slate-500">Alokasi Dokter, Perawat, Analis Lab, dan Admin.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="z-10 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0">2</div>
+                            <div class="ml-6">
+                                <p class="font-medium">Pengadaan & Logistik</p>
+                                <p class="text-sm text-slate-500">Persiapan reagen, alat medis, dan transportasi.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                           <div class="z-10 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0">3</div>
+                            <div class="ml-6">
+                                <p class="font-medium">Pelaksanaan On-site</p>
+                                <p class="text-sm text-slate-500">Koordinasi jadwal, alur layanan di lokasi klien.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="z-10 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0">4</div>
+                            <div class="ml-6">
+                                <p class="font-medium">Pelaporan & Analisis</p>
+                                <p class="text-sm text-slate-500">Pengolahan hasil, pembuatan laporan individu & rekapitulasi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Rekomendasi -->
+        <section class="slide w-full h-full flex-col items-center justify-center text-center">
+            <div class="bg-white p-8 rounded-2xl shadow-lg max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-800 mb-8">Rekomendasi & Langkah Selanjutnya</h2>
+                <div class="text-left space-y-4">
+                    <div class="flex items-start bg-slate-100 p-4 rounded-lg">
+                         <i data-lucide="check-circle-2" class="w-6 h-6 text-green-500 mr-4 mt-1 flex-shrink-0"></i>
+                         <div>
+                            <h3 class="font-semibold">Persetujuan Prinsip</h3>
+                            <p class="text-slate-600 text-sm">Menyetujui proyek ini untuk dilanjutkan ke tahap penawaran resmi kepada PT. ABC.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start bg-slate-100 p-4 rounded-lg">
+                        <i data-lucide="file-text" class="w-6 h-6 text-blue-500 mr-4 mt-1 flex-shrink-0"></i>
+                        <div>
+                            <h3 class="font-semibold">Finalisasi Proposal</h3>
+                            <p class="text-slate-600 text-sm">Menyusun dokumen penawaran formal untuk dikirimkan kepada klien.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start bg-slate-100 p-4 rounded-lg">
+                         <i data-lucide="users" class="w-6 h-6 text-yellow-500 mr-4 mt-1 flex-shrink-0"></i>
+                         <div>
+                            <h3 class="font-semibold">Alokasi Sumber Daya Awal</h3>
+                            <p class="text-slate-600 text-sm">Menyiapkan tim inti dan estimasi anggaran operasional awal.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div>
 
-    <div class="w-full max-w-4xl mx-auto mt-4">
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-            <div id="progressBar" class="bg-prima-blue h-2.5 rounded-full progress-bar-fill" style="width: 0%"></div>
-        </div>
-        <div class="flex justify-between items-center mt-3">
-            <button id="prevBtn" class="bg-white text-gray-700 font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">Sebelumnya</button>
-            <span id="slideCounter" class="text-sm font-medium text-gray-600"></span>
-            <button id="nextBtn" class="bg-prima-blue text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">Selanjutnya</button>
-        </div>
+    <!-- Navigasi -->
+    <div class="fixed bottom-5 right-5 flex space-x-2 z-20">
+        <button id="prevBtn" class="bg-white rounded-full p-3 shadow-md hover:bg-slate-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+            <i data-lucide="arrow-left" class="w-5 h-5 text-slate-600"></i>
+        </button>
+        <button id="nextBtn" class="bg-white rounded-full p-3 shadow-md hover:bg-slate-100 transition-colors">
+            <i data-lucide="arrow-right" class="w-5 h-5 text-slate-600"></i>
+        </button>
     </div>
 
     <script>
-        const logoUrl = 'https://storage.googleapis.com/gemini-prod-us-west1-453303953503/34f9a562-725d-4a11-b21a-4d4374824d77';
-
-        const slidesData = [
-            {
-                type: 'title',
-                title: 'Menjadi klinik pratama yang bertumbuh dan berkembang dengan jiwa pengabdian, ketulusan, serta profesionalisme dalam pelayanan kesehatan masyarakat.',
-                subtitle: 'Kemitraan Bersama Dokter Gigi di Klinik Pratama Prima',
-                presenter: 'Manajemen Klinik Prima',
-                note: 'Kami bangga bisa memulai langkah ini bersama Anda.'
-            },
-            {
-                type: 'points',
-                title: 'Visi & Nilai Utama Kita',
-                vision: 'Menjadi pusat layanan gigi yang ramah, profesional, dan dipercaya masyarakat, dengan sentuhan personal di setiap kunjungan.',
-                points: [
-                    { title: 'Kepedulian', text: 'Kami ingin pasien merasa diperhatikan, bukan hanya dilayani.', icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-prima-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>` },
-                    { title: 'Kolaborasi', text: 'Klinik dan dokter berjalan beriringan, saling melengkapi.', icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-prima-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>` },
-                    { title: 'Pertumbuhan', text: 'Terus beradaptasi dan berkembang dalam ilmu, trend layanan, dan teknologi.', icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-prima-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>` }
-                ]
-            },
-            {
-                type: 'chart',
-                chartType: 'doughnut',
-                title: 'Alokasi Biaya Harian Poli Gigi',
-                description: 'Total biaya harian sekitar Rp 907.257 dialokasikan pada beberapa komponen utama.',
-                data: {
-                    labels: ['SDM', 'Overhead', 'Alkes', 'Bangunan & Lainnya'],
-                    datasets: [{
-                        data: [295202, 239394, 194213, 178447],
-                        backgroundColor: ['#1E40AF', '#16A34A', '#3B82F6', '#22C55E'],
-                        borderColor: '#FFFFFF',
-                        borderWidth: 4,
-                    }]
-                },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right' }, tooltip: { callbacks: { label: function(context) { let label = context.label || ''; if (context.parsed !== null) { label += ': ' + new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(context.parsed); } return label; } } } } }
-            },
-            {
-                type: 'chart',
-                chartType: 'line',
-                title: 'Menuju Titik Impas & Pertumbuhan',
-                description: 'Pendapatan harian akan menutupi biaya operasional saat mencapai titik impas (Break-Even Point).',
-                data: {
-                    labels: ['0', '10', '20', '30', '40', '50', '60'],
-                    datasets: [
-                        { label: 'Biaya Operasional', data: [907257, 907257, 907257, 907257, 907257, 907257, 907257], borderColor: '#EF4444', borderDash: [5, 5], fill: false, tension: 0.1 },
-                        { label: 'Estimasi Pendapatan', data: [0, 450000, 900000, 1350000, 1800000, 2250000, 2700000], borderColor: '#16A34A', backgroundColor: '#D1FAE5', fill: true, tension: 0.1 }
-                    ]
-                },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } }, scales: { y: { beginAtZero: true, ticks: { callback: function(value) { return 'Rp ' + (value / 1000) + 'k'; } } }, x: { title: { display: true, text: 'Jumlah Pasien (Estimasi)' } } } },
-                note: 'Titik impas terjadi saat garis hijau (pendapatan) melampaui garis merah (biaya).'
-            },
-            {
-                type: 'split',
-                title: 'Skema Pembagian Jasa (80:20)',
-                description: 'Contoh: Tambalan GIC Dewasa (Rp 260.000)',
-                clinic: { percentage: '80%', amount: 'Rp 208.000', label: 'Klinik', details: 'Menutup biaya operasional dan mendukung keberlanjutan.' },
-                doctor: { percentage: '20%', amount: 'Rp 52.000', label: 'Dokter', details: 'Apresiasi atas keahlian dan tindakan medis Anda.' }
-            },
-            {
-                type: 'table',
-                title: 'Daftar Tarif Pelayanan',
-                data: [
-                    { category: 'PEMERIKSAAN & PENCEGAHAN' },
-                    { item: 'PEMERIKSAAN DOKTER GIGI', tarif: 35000, jd: 7000 }, { item: 'PEMBERIAN TOPICAL APPLICATION FLOUR (TAF)', tarif: 230000, jd: 46000 }, { item: 'SCALLING PER REGIO RINGAN', tarif: 79000, jd: 15800 }, { item: 'SCALLING PER REGIO SEDANG', tarif: 120000, jd: 24000 }, { item: 'SCALLING PER REGIO BERAT', tarif: 138000, jd: 27600 }, { item: 'SCALLING PER RAHANG RINGAN', tarif: 154000, jd: 30800 }, { item: 'SCALLING PER RAHANG SEDANG', tarif: 210000, jd: 42000 }, { item: 'SCALLING PER RAHANG BERAT', tarif: 298000, jd: 59600 },
-                    { category: 'KONSERVASI GIGI' },
-                    { item: 'BUKA KAVUM', tarif: 69000, jd: 13800 }, { item: 'TAMBAL SEMENTARA (PER GIGI)', tarif: 58000, jd: 11600 }, { item: 'DEVITALISASI + TAMBAL SEMENTARA', tarif: 162000, jd: 32400 }, { item: 'PULP CAPPING (PER GIGI)', tarif: 58000, jd: 11600 }, { item: 'PREPARASI SALURAN AKAR (1 SALURAN)', tarif: 79000, jd: 15800 }, { item: 'PREPARASI SALURAN AKAR (2 SALURAN)', tarif: 98000, jd: 19600 }, { item: 'PREPARASI SALURAN AKAR (3 SALURAN)', tarif: 120000, jd: 24000 }, { item: 'PENGISIAN GIGI (PER GIGI)', tarif: 57000, jd: 11400 }, { item: 'TAMBALAN GIC ANAK', tarif: 179000, jd: 35800 }, { item: 'TAMBALAN GIC DEWASA', tarif: 260000, jd: 52000 }, { item: 'TAMBALAN KOMPOSIT KECIL', tarif: 244000, jd: 48800 }, { item: 'TAMBALAN KOMPOSIT BESAR', tarif: 333000, jd: 66600 }, { item: 'TAMBALAN KOMPOSIT GIGI DEPAN / ESTETIK', tarif: 343000, jd: 68600 },
-                    { category: 'BEDAH MINOR (PENCABUTAN GIGI)' },
-                    { item: 'EKSTRAKSI GIGI ANAK (TOPICAL)', tarif: 153000, jd: 30600 }, { item: 'EKSTRAKSI GIGI ANAK (INJEKSI)', tarif: 151000, jd: 30200 }, { item: 'EKSTRAKSI GIGI DEWASA (TOPICAL)', tarif: 142000, jd: 28400 }, { item: 'EKSTRAKSI GIGI DEWASA (INJEKSI)', tarif: 227000, jd: 45400 }, { item: 'EKSTRAKSI GIGI DEWASA (KOMPLIKASI)', tarif: 332000, jd: 66400 },
-                    { category: 'LAIN-LAIN' },
-                    { item: 'DRY SOCKET', tarif: 166000, jd: 33200 }, { item: 'ERF GIGI ANTERIOR', tarif: 233000, jd: 46600 },
-                ]
-            },
-            {
-                type: 'points',
-                title: 'Kemitraan yang Aktif dan Kolaboratif',
-                description: 'Klinik ini bukan sekadar tempat kerja, melainkan ruang berkarya dan bertumbuh bersama:',
-                points: [
-                    { title: 'Ruang Diskusi', text: 'Pertemuan rutin untuk evaluasi dan ide.', icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-prima-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>` },
-                    { title: 'SOP Kolaboratif', text: 'Dokter terlibat langsung dalam menyusun standar klinis sesuai ketentuan yang berlaku.', icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-prima-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>` }
-                ]
-            },
-            {
-                type: 'points',
-                title: 'Komitmen Bersama',
-                description: 'Fondasi kemitraan yang ingin kita bangun:',
-                points: [
-                    { title: 'Transparansi', text: 'Transparansi dalam menyampaikan masukan, kritik, maupun saran demi kebaikan bersama.', icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-prima-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 20.417l5.5-5.5a1 1 0 011.414 0l5.5 5.5A12.02 12.02 0 0018.944 5.944c.32.707.536 1.456.618 2.228z" /></svg>` },
-                    { title: 'Tujuan Bersama', text: 'Pertumbuhan klinik dan mutu pelayanan di atas segalanya.', icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-prima-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" /></svg>` }
-                ]
-            },
-            {
-                type: 'final',
-                title: 'Mari Melangkah Bersama membangun layanan gigi yang profesional',
-                message: 'Terima Kasih.'
-            }
-        ];
-
-        let currentSlide = 0;
-        const presentationContainer = document.getElementById('presentation-container');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const slideCounter = document.getElementById('slideCounter');
-        const progressBar = document.getElementById('progressBar');
-        let charts = {};
-
-        function createSlideElement(slideData, index) {
-            const slideDiv = document.createElement('div');
-            slideDiv.className = 'slide w-full h-full absolute top-0 left-0';
-            slideDiv.id = `slide-${index}`;
-
-            let contentWrapper = document.createElement('div');
-            contentWrapper.className = 'w-full h-full p-8 md:p-12 flex flex-col justify-center items-center text-center relative z-10';
-            
-            let content = '';
-            
-            if (slideData.type === 'title' || slideData.type === 'final') {
-                slideDiv.innerHTML = `<img src="${logoUrl}" alt="Logo Klinik Pratama Prima" class="corner-logo" onerror="this.onerror=null; this.src='https://placehold.co/200x60/1E40AF/FFFFFF?text=Logo+Klinik';">`;
-            } else {
-                slideDiv.classList.add('watermark-bg');
-                slideDiv.style.backgroundImage = `url(${logoUrl})`;
-                let overlay = document.createElement('div');
-                overlay.className = 'content-overlay';
-                slideDiv.appendChild(overlay);
-            }
-
-            switch (slideData.type) {
-                case 'title':
-                    content = `<div class="flex flex-col items-center justify-center h-full pt-10">
-                        <h1 class="text-2xl md:text-3xl font-bold text-prima-blue px-6">${slideData.title}</h1>
-                        <p class="mt-4 text-lg md:text-xl text-gray-600">${slideData.subtitle}</p>
-                        <div class="mt-12 border-t border-gray-200 pt-6">
-                            <p class="text-md font-medium text-gray-800">${slideData.presenter}</p>
-                            <p class="text-sm text-gray-500 italic mt-1">${slideData.note}</p>
-                        </div>
-                    </div>`;
-                    break;
-                case 'points':
-                    content = `<div class="w-full text-left">
-                        <h2 class="text-2xl md:text-4xl font-bold text-prima-blue mb-4 text-center">${slideData.title}</h2>
-                        ${slideData.vision ? `<p class="text-center text-lg text-gray-700 mb-8 p-4 bg-blue-50 rounded-lg border-l-4 border-prima-blue">${slideData.vision}</p>` : ''}
-                        ${slideData.description ? `<p class="text-center text-md text-gray-600 mb-8">${slideData.description}</p>` : ''}
-                        <div class="space-y-4 md:space-y-6">
-                            ${slideData.points.map(point => `<div class="bg-gray-50 p-4 rounded-lg flex items-center">
-                                <div class="mr-4 flex-shrink-0">${point.icon}</div>
-                                <div><h3 class="font-bold text-gray-800 text-lg">${point.title}</h3><p class="text-gray-600">${point.text}</p></div>
-                            </div>`).join('')}
-                        </div>
-                    </div>`;
-                    break;
-                case 'chart':
-                    content = `<div class="w-full h-full flex flex-col items-center justify-center p-4">
-                        <h2 class="text-2xl md:text-3xl font-bold text-prima-blue mb-2 text-center">${slideData.title}</h2>
-                        <p class="text-center text-sm md:text-base text-gray-600 mb-4 max-w-2xl">${slideData.description || ''}</p>
-                        <div class="w-full flex-grow relative"><canvas id="chart-${index}"></canvas></div>
-                        ${slideData.note ? `<p class="text-center text-xs text-gray-500 mt-2 italic">${slideData.note}</p>` : ''}
-                    </div>`;
-                    break;
-                case 'split':
-                    content = `<div class="w-full">
-                        <h2 class="text-2xl md:text-4xl font-bold text-prima-blue mb-2 text-center">${slideData.title}</h2>
-                        <p class="text-center text-md text-gray-600 mb-8">${slideData.description}</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-                            <div class="bg-blue-50 border-2 border-prima-blue rounded-xl p-6 flex flex-col">
-                                <span class="text-5xl font-extrabold text-prima-blue">${slideData.clinic.percentage}</span>
-                                <h3 class="text-xl font-bold text-prima-blue mt-2">${slideData.clinic.label}</h3>
-                                <p class="text-2xl font-bold text-gray-700 mt-4">${slideData.clinic.amount}</p>
-                                <p class="text-gray-600 mt-2 flex-grow">${slideData.clinic.details}</p>
-                            </div>
-                            <div class="bg-green-50 border-2 border-prima-green rounded-xl p-6 flex flex-col">
-                                <span class="text-5xl font-extrabold text-prima-green">${slideData.doctor.percentage}</span>
-                                <h3 class="text-xl font-bold text-prima-green mt-2">${slideData.doctor.label}</h3>
-                                <p class="text-2xl font-bold text-gray-700 mt-4">${slideData.doctor.amount}</p>
-                                <p class="text-gray-600 mt-2 flex-grow">${slideData.doctor.details}</p>
-                            </div>
-                        </div>
-                    </div>`;
-                    break;
-                case 'table':
-                    const formatCurrency = (value) => new Intl.NumberFormat('id-ID').format(value);
-                    let tableRows = slideData.data.map(row => {
-                        if (row.category) {
-                            return `<tr class="bg-blue-50"><td colspan="3" class="py-2 px-4 font-bold text-prima-blue text-left">${row.category}</td></tr>`;
-                        }
-                        return `<tr>
-                                    <td class="py-2 px-4 text-left border-b">${row.item}</td>
-                                    <td class="py-2 px-4 text-right border-b">${formatCurrency(row.tarif)}</td>
-                                    <td class="py-2 px-4 text-right border-b font-semibold text-prima-green">${formatCurrency(row.jd)}</td>
-                                </tr>`;
-                    }).join('');
-
-                    content = `<div class="w-full flex flex-col h-full">
-                        <h2 class="text-2xl md:text-3xl font-bold text-prima-blue mb-4 text-center">${slideData.title}</h2>
-                        <div class="table-container w-full border rounded-lg">
-                            <table class="w-full text-sm text-gray-700">
-                                <thead class="bg-gray-100 sticky top-0">
-                                    <tr>
-                                        <th class="py-2 px-4 text-left font-bold">ITEM TARIF</th>
-                                        <th class="py-2 px-4 text-right font-bold">Tarif Umum (Rp)</th>
-                                        <th class="py-2 px-4 text-right font-bold">Jasa Dokter (20%) (Rp)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>${tableRows}</tbody>
-                            </table>
-                        </div>
-                    </div>`;
-                    break;
-                case 'final':
-                    content = `<div class="flex flex-col items-center justify-center h-full pt-10">
-                        <h1 class="text-3xl md:text-5xl font-extrabold text-prima-blue">${slideData.title}</h1>
-                        <p class="mt-6 text-lg text-center text-gray-600 max-w-2xl">${slideData.message}</p>
-                    </div>`;
-                    break;
-            }
-            contentWrapper.innerHTML = content;
-            slideDiv.appendChild(contentWrapper);
-            return slideDiv;
-        }
-
-        function renderSlides() {
-            slidesData.forEach((slide, index) => {
-                const slideElement = createSlideElement(slide, index);
-                presentationContainer.appendChild(slideElement);
-            });
-        }
-
-        function showSlide(index) {
-            if (charts[currentSlide] && slidesData[currentSlide].type === 'chart') {
-                charts[currentSlide].destroy();
-                delete charts[currentSlide];
-            }
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
 
             const slides = document.querySelectorAll('.slide');
-            slides.forEach((slide, i) => {
-                if (i === index) {
-                    slide.classList.remove('slide-hidden');
-                    slide.classList.add('slide-active');
-                } else {
-                    slide.classList.add('slide-hidden');
-                    slide.classList.remove('slide-active');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let currentSlide = 0;
+            let financialChartInstance = null;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
+                });
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === slides.length - 1;
+
+                if (index === 3) { 
+                    renderFinancialChart();
+                }
+            }
+            
+            function changeSlide(direction) {
+                const newSlide = currentSlide + direction;
+                if (newSlide >= 0 && newSlide < slides.length) {
+                    currentSlide = newSlide;
+                    showSlide(currentSlide);
+                }
+            }
+
+            prevBtn.addEventListener('click', () => changeSlide(-1));
+            nextBtn.addEventListener('click', () => changeSlide(1));
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    changeSlide(1);
+                } else if (e.key === 'ArrowLeft') {
+                    changeSlide(-1);
                 }
             });
 
-            currentSlide = index;
+            showSlide(currentSlide);
 
-            prevBtn.disabled = currentSlide === 0;
-            nextBtn.disabled = currentSlide === slidesData.length - 1;
-            slideCounter.textContent = `Slide ${currentSlide + 1} dari ${slidesData.length}`;
-            const progress = ((currentSlide + 1) / slidesData.length) * 100;
-            progressBar.style.width = `${progress}%`;
+            function renderFinancialChart() {
+                const ctx = document.getElementById('financialChart');
+                if (!ctx) return;
+                
+                if(financialChartInstance) {
+                    financialChartInstance.destroy();
+                }
 
-            const currentSlideData = slidesData[currentSlide];
-            if (currentSlideData.type === 'chart' && !charts[currentSlide]) {
-                 setTimeout(() => {
-                    const ctx = document.getElementById(`chart-${currentSlide}`).getContext('2d');
-                    if (ctx) {
-                        charts[currentSlide] = new Chart(ctx, {
-                            type: currentSlideData.chartType,
-                            data: currentSlideData.data,
-                            options: currentSlideData.options
-                        });
+                const data = {
+                    labels: ['MCU Basic', 'MCU Standard', 'MCU Comprehensive'],
+                    datasets: [
+                        {
+                            label: 'Proyeksi Keuntungan',
+                            data: [142590000, 216090000, 180236000],
+                            backgroundColor: 'rgba(16, 185, 129, 0.7)',
+                            borderColor: 'rgba(16, 185, 129, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Proyeksi Pendapatan',
+                            data: [356475000, 540225000, 450590000],
+                            backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                            borderColor: 'rgba(59, 130, 246, 1)',
+                            borderWidth: 1
+                        },
+                    ]
+                };
+
+                financialChartInstance = new Chart(ctx, {
+                    type: 'bar',
+                    data: data,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        indexAxis: 'y',
+                        scales: {
+                            x: {
+                                stacked: false,
+                                ticks: {
+                                    callback: function(value, index, values) {
+                                        return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', notation:'compact' }).format(value);
+                                    }
+                                }
+                            },
+                            y: {
+                                stacked: false
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.x !== null) {
+                                            label += new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(context.parsed.x);
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
                     }
-                 }, 100);
-            }
-        }
-
-        prevBtn.addEventListener('click', () => {
-            if (currentSlide > 0) {
-                showSlide(currentSlide - 1);
+                });
             }
         });
-
-        nextBtn.addEventListener('click', () => {
-            if (currentSlide < slidesData.length - 1) {
-                showSlide(currentSlide + 1);
-            }
-        });
-        
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') {
-                nextBtn.click();
-            } else if (e.key === 'ArrowLeft') {
-                prevBtn.click();
-            }
-        });
-
-        renderSlides();
-        showSlide(0);
     </script>
 </body>
 </html>
